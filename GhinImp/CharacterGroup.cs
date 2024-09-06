@@ -7,9 +7,9 @@ public class CharacterGroup
     
     public List<Character> Characters => characters;
 
-    public CharacterGroup()
+    public CharacterGroup(List<Character> a)
     {
-        
+        characters = a;
     }
 
     // Метод для добавления персонажей

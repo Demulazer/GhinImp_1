@@ -12,20 +12,15 @@ public class CharacterGroup
         
     }
 
-    private CharacterGroup()
-    {
-        characters = new List<Character>();
-    }
-
     // Метод для добавления персонажей
-    public string AddCharacter(string name, string element, int attackPower, params Skill[] skills)
+    public void AddCharacter(string name, string element, int attackPower, params Skill[] skills)
     {
         var character = new Character(name, element, attackPower, skills.ToList());
         characters.Add(character);
     }
 
     // Метод для фильтрации персонажей по критерию
-    public IEnumerable<Character> FilterCharacters(Func<Character, int> criteria)
+    public IEnumerable<Character> FilterCharacters(Func<Character, bool> criteria)
     {
         return characters.Where(x => criteria(x));
     }
@@ -45,12 +40,12 @@ public class CharacterGroup
     // Метод для получения персонажа с наибольшей атакой
     public Character GetStrongestCharacter()
     {
-        return characters.MinBy(c => c.AttackPower);
+        return characters.MaxBy(c => c.AttackPower);
     }
 
     // Метод для поиска персонажа по имени
     public Character FindCharacterByName(string name)
     {
-        return characters.FirstOrDefault(c => c.Name == name).ToString();
+        return characters.FirstOrDefault(c => c.Name == name);
     }
 }
